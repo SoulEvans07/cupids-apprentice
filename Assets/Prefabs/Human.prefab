@@ -179,6 +179,8 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 512
+  clothing:
+  - {fileID: 7258840913434948008}
 --- !u!1001 &6992251113062435591
 PrefabInstance:
   m_ObjectHideFlags: 0

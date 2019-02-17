@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class Human : MonoBehaviour {
     private Rigidbody2D _rigidbody;
@@ -13,6 +16,8 @@ public class Human : MonoBehaviour {
 
     public Transform wallDetector;
     public LayerMask whatIsWall;
+
+    public List<GameObject> clothing = new List<GameObject>();
     
     void Start() {
         if(!wallDetector) throw new Exception(this.name + " is missing wall detector");
@@ -55,6 +60,9 @@ public class Human : MonoBehaviour {
         Fog fog = GetComponentInChildren<Fog>();
         if(fog) fog.fog.size *= _rigidbody.transform.localScale; 
         // color
-        _renderer.color = new Color(Random.Range(0.2f, 1), Random.Range(0.2f, 1), Random.Range(0.2f, 1));
+        Color c = new Color(Random.Range(0.2f, 1), Random.Range(0.2f, 1), Random.Range(0.2f, 1));
+        foreach (GameObject cloth in clothing) {
+            cloth.GetComponent<SpriteRenderer>().color = c;
+        }
     }
 }
