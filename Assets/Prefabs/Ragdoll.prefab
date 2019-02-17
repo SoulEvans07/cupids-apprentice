@@ -503,7 +503,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753365677918223488}
-  m_LocalRotation: {x: 0, y: 0, z: 0.997995, w: 0.06329357}
+  m_LocalRotation: {x: 0, y: 0, z: -0.36882052, w: -0.92950064}
   m_LocalPosition: {x: 0.30430338, y: 0.17198633, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_Children:
@@ -1083,7 +1083,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029666454509181880}
-  m_LocalRotation: {x: 0, y: 0, z: -0.15169293, w: 0.9884277}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0018869013, w: 0.9999983}
   m_LocalPosition: {x: 0.34311783, y: -0.00000008642192, z: 0}
   m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
   m_Children:
@@ -1145,7 +1145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5672022248680495285}
   m_LocalRotation: {x: -0, y: -0, z: 0.7561327, w: -0.6544184}
-  m_LocalPosition: {x: -0.3582741, y: 1.161643, z: 0}
+  m_LocalPosition: {x: -0.3582741, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7611816084199987997}
@@ -1294,6 +1294,7 @@ GameObject:
   - component: {fileID: 9007836866154909215}
   - component: {fileID: 3579847717995036024}
   - component: {fileID: 6737735394128572660}
+  - component: {fileID: 3834289064262809553}
   m_Layer: 8
   m_Name: Ragdoll
   m_TagString: Untagged
@@ -1412,7 +1413,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   clothing:
-  - {fileID: 6501150986101854428}
+  - {fileID: 614323808945324594}
+--- !u!95 &3834289064262809553
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197693380762842725}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 149c5f9fa8b185d488ea378a7965bd6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7318656524621668770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,13 +1579,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8109612363638821140}
-  m_LocalRotation: {x: -0, y: -0, z: 0.13175568, w: 0.9912822}
+  m_LocalRotation: {x: -0, y: -0, z: -0.8946704, w: -0.44672686}
   m_LocalPosition: {x: 0.265, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5353659113521512996}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.142001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 126.93201}
 --- !u!1 &9161933523666030035
 GameObject:
   m_ObjectHideFlags: 0

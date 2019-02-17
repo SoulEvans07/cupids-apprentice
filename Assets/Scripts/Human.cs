@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.Experimental.U2D.IK;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -10,6 +11,8 @@ using Vector3 = UnityEngine.Vector3;
 public class Human : MonoBehaviour {
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _renderer;
+    private IKManager2D _ikManager;
+    private List<LimbSolver2D> _limbs = new List<LimbSolver2D>();
     private Vector2 _pos;
     public float speed = 0.8f;
     public int direction = 1;
@@ -24,7 +27,13 @@ public class Human : MonoBehaviour {
      
         _rigidbody = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-        
+        _ikManager = GetComponent<IKManager2D>();
+        if (_ikManager) {
+            foreach (Solver2D solver in _ikManager.solvers) {
+                _limbs.Add(solver.GetComponent<LimbSolver2D>());
+            }
+        }
+
         this.Randomize();
     }
 
@@ -46,14 +55,18 @@ public class Human : MonoBehaviour {
 
     void Flip() {
         this.direction *= -1;
-        this.wallDetector.localPosition = new Vector2(wallDetector.localPosition.x * -1, wallDetector.localPosition.y);
+        Vector3 lScale = _rigidbody.transform.localScale;
+        _rigidbody.transform.localScale = new Vector3(-lScale.x, lScale.y, lScale.z);
+//        this.wallDetector.localPosition = new Vector2(wallDetector.localPosition.x * -1, wallDetector.localPosition.y);
+
+//        foreach (LimbSolver2D limb in _limbs) {
+//            limb.flip = !limb.flip;
+//        }
     }
 
     void Randomize() {
         // speed
         this.speed *= (1 + Random.Range(-0.1f, 0.1f));
-        // direction
-        if(Random.Range(-1, 1) < 0) this.Flip();
         // size
         Vector2 scale = _rigidbody.transform.localScale;
         _rigidbody.transform.localScale = new Vector2(scale.x + Random.Range(-0.05f, 0.05f) , scale.y + Random.Range(-0.2f, 0.1f));
@@ -64,5 +77,7 @@ public class Human : MonoBehaviour {
         foreach (GameObject cloth in clothing) {
             cloth.GetComponent<SpriteRenderer>().color = c;
         }
+        // direction
+        if(Random.Range(-1, 1) < 0) this.Flip();
     }
 }
