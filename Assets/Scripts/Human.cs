@@ -10,7 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class Human : MonoBehaviour {
     private Rigidbody2D _rigidbody;
-    private SpriteRenderer _renderer;
+    private SpriteRenderer[] _renderers;
     private Vector2 _pos;
     public float speed = 0.8f;
     public int direction = 1;
@@ -27,7 +27,7 @@ public class Human : MonoBehaviour {
         if(!wallDetector) throw new Exception(this.name + " is missing wall detector");
      
         _rigidbody = GetComponent<Rigidbody2D>();
-        _renderer = GetComponent<SpriteRenderer>();
+        _renderers = GetComponentsInChildren<SpriteRenderer>();
         
         this.Randomize();
     }
@@ -61,6 +61,12 @@ public class Human : MonoBehaviour {
         }
     }
 
+    public void SetOrderLayer(int _base) {
+        if(_renderers == null) _renderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer rendr in _renderers) {
+            rendr.sortingOrder = rendr.sortingOrder + _base * 10;
+        }
+    }
 
     public void SetDescription(HumanDescription description) {
         _description = description;

@@ -7,7 +7,6 @@ public class LineSpawner : Spawner {
     public int scale = 5;
 
     public override List<GameObject> Spawn(List<HumanDescription> descriptions) {
-        Debug.Log(pairs);
         foreach (LinePairs pair in pairs) {
             Vector2 v = pair.b.position - pair.a.position;
             v = v / scale;

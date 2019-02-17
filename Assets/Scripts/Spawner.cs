@@ -24,7 +24,8 @@ public class Spawner : MonoBehaviour {
                 Vector3 pos = spawnVectors[Random.Range(0, spawnVectors.Count)];
                 GameObject inst = Instantiate(humanObject, pos, Quaternion.identity);
                 inst.transform.parent = spawnParent.transform;
-                humanObject.GetComponent<Human>().SetDescription(descriptions[i]);
+                inst.GetComponent<Human>().SetOrderLayer(i);
+                inst.GetComponent<Human>().SetDescription(descriptions[i]);
                 instanceList.Add(inst);
             }
         } else {
