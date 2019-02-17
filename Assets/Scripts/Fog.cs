@@ -5,7 +5,7 @@ public class Fog : MonoBehaviour {
     private Transform _transform;
     private Vector2 _pos;
     private Camera _camera;
-    public Rect body;
+    public Rect fog;
     public float _diff;
     public float minDiff = 1.5f;
     public float maxDiff = 0.5f;
@@ -20,20 +20,24 @@ public class Fog : MonoBehaviour {
         _camera = Camera.main;
         _transform = GetComponent<Transform>();
         BoxCollider2D coll = GetComponentInParent<BoxCollider2D>();
-        body = new Rect(_transform.position, coll.size);
+        fog = new Rect(_transform.position, coll.size);
     }
 
     void FixedUpdate() {
         _pos = _transform.position;
 
-        this.body.position = _pos - this.body.size * 0.5f;
+        // Set fog position
+        this.fog.position = _pos - this.fog.size * 0.5f;
 
-        Vector2 mPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        _diff = DistancePointToRectangle(mPos, body);
-
-
+        // Update jitter
         jitterTimer += Time.deltaTime * jitterSpeed;
         if (jitterTimer > Mathf.PI * 2) jitterTimer = 0;
+        
+        // Get distance
+        Vector2 mPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        _diff = DistancePointToRectangle(mPos, fog);
+        
+        // Animate fog
         if (_diff < minDiff) {
             _transform.localScale = Vector2.one * getScale(_diff) + Vector2.one * getJitter() ;
         } else if (!_transform.localScale.Equals(Vector3.zero)) {
