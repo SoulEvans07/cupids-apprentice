@@ -1,5 +1,8 @@
-﻿using UnityEditor;
+﻿using System.Numerics;
+using UnityEditor;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class Fog : MonoBehaviour {
     private Transform _transform;
@@ -11,7 +14,7 @@ public class Fog : MonoBehaviour {
     public float maxDiff = 0.5f;
     public float minScale = 1.0f;
     public float maxScale = 4.0f;
-    
+    private Vector2 aspect;
     public float jitter = 0.1f;
     public float jitterTimer;
     public float jitterSpeed = 3;
@@ -20,7 +23,10 @@ public class Fog : MonoBehaviour {
         _camera = Camera.main;
         _transform = GetComponent<Transform>();
         BoxCollider2D coll = GetComponentInParent<BoxCollider2D>();
-        fog = new Rect(_transform.position, coll.size);
+        this.fog = new Rect(_transform.position, coll.size);
+        
+//        this.aspect = new Vector2(1, this.fog.size.x / this.fog.size.y);
+        this.aspect = new Vector2( this.fog.size.y / this.fog.size.x * 0.4f, 0.5f);
     }
 
     void FixedUpdate() {
@@ -35,11 +41,11 @@ public class Fog : MonoBehaviour {
         
         // Get distance
         Vector2 mPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        _diff = DistancePointToRectangle(mPos, fog);
+        _diff = DistancePointToRectangle(mPos, this.fog);
         
         // Animate fog
         if (_diff < minDiff) {
-            _transform.localScale = Vector2.one * getScale(_diff) + Vector2.one * getJitter() ;
+            _transform.localScale = this.aspect * getScale(_diff) + this.aspect * getJitter() ;
         } else if (!_transform.localScale.Equals(Vector3.zero)) {
             _transform.localScale = Vector3.zero;
         }
@@ -93,8 +99,8 @@ public class Fog : MonoBehaviour {
         return 0f;
     }
 
-//    [ExecuteInEditMode]
-//    void OnDrawGizmosSelected() {
-//        Handles.DrawSolidRectangleWithOutline(body, Color.clear, Color.cyan);
-//    }
+    [ExecuteInEditMode]
+    void OnDrawGizmosSelected() {
+        Handles.DrawSolidRectangleWithOutline(this.fog, Color.clear, Color.cyan);
+    }
 }
