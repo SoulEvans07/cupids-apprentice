@@ -53,4 +53,4 @@ MonoBehaviour:
     sprite: {fileID: 21300016, guid: 13365c5af195bb94e8090b67595d11ac, type: 3}
   maleFeatures: []
   femaleFeatures: []
-  heightDiff: 0.15
+  heightDiff: 0.05

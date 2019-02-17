@@ -24,9 +24,9 @@ public class DescriptionDefaults : MonoBehaviour {
 
     public Vector2 GetRandomHeight(HeightEnum height) {
         switch (height) {
-            case HeightEnum.TALL: return new Vector2(1, 1.2f + Random.Range(-heightDiff, heightDiff));
+            case HeightEnum.TALL: return new Vector2(1, 1.1f + Random.Range(-heightDiff, heightDiff));
             case HeightEnum.NORMAL: return new Vector2(1, 1 + Random.Range(-heightDiff, heightDiff));
-            case HeightEnum.SHORT: return new Vector2(1, 0.8f + Random.Range(-heightDiff, heightDiff));
+            case HeightEnum.SHORT: return new Vector2(1, 0.9f + Random.Range(-heightDiff, heightDiff));
             default: return Vector2.one;          
         }
     }
