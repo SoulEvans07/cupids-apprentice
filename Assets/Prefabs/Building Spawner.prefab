@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 543901214573124514}
   - component: {fileID: 543901214573124515}
   m_Layer: 0
-  m_Name: Building
+  m_Name: Building Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,7 +235,6 @@ MonoBehaviour:
   spawnPoints: []
   spawnVectors: []
   spawnParent: {fileID: 543901214706100563}
-  amount: 30
   pairs:
   - a: {fileID: 543901213842067313}
     b: {fileID: 543901213186626250}
@@ -243,7 +242,7 @@ MonoBehaviour:
     b: {fileID: 543901214154214416}
   - a: {fileID: 543901213631896717}
     b: {fileID: 543901213105225602}
-  scale: 5
+  scale: 10
 --- !u!1 &543901214706100563
 GameObject:
   m_ObjectHideFlags: 0

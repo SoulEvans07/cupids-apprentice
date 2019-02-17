@@ -18,7 +18,10 @@ public class Human : MonoBehaviour {
     public Transform wallDetector;
     public LayerMask whatIsWall;
 
-    public List<GameObject> clothing = new List<GameObject>();
+//    public List<GameObject> clothing = new List<GameObject>();
+
+    public SpriteRenderer hairRenderer;
+    private HumanDescription _description;
     
     void Start() {
         if(!wallDetector) throw new Exception(this.name + " is missing wall detector");
@@ -56,21 +59,37 @@ public class Human : MonoBehaviour {
         if (this.direction != dir) {
             this.Flip();
         }
-    } 
+    }
+
+
+    public void SetDescription(HumanDescription description) {
+        _description = description;
+        // size
+        if(!_rigidbody) _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody.transform.localScale = _description.scale;
+        Fog fog = GetComponentInChildren<Fog>();
+        if(fog) fog.fog.size *= _rigidbody.transform.localScale;
+        
+        // hair style
+        hairRenderer.sprite = description.hairStyle.sprite;
+        
+        // hair color
+        hairRenderer.color = description.hairColor;
+    }
+
 
     void Randomize() {
         // speed
         this.speed *= (1 + Random.Range(-0.1f, 0.1f));
-        // size
-        Vector2 scale = _rigidbody.transform.localScale;
-        _rigidbody.transform.localScale = new Vector2(scale.x + Random.Range(-0.05f, 0.05f) , scale.y + Random.Range(-0.2f, 0.1f));
-        Fog fog = GetComponentInChildren<Fog>();
-        if(fog) fog.fog.size *= _rigidbody.transform.localScale; 
+        
+        //Vector2 scale = _rigidbody.transform.localScale;
+        //_rigidbody.transform.localScale = new Vector2(scale.x + Random.Range(-0.05f, 0.05f) , scale.y + Random.Range(-0.2f, 0.1f));
+         
         // color
-        Color c = new Color(Random.Range(0.2f, 1), Random.Range(0.2f, 1), Random.Range(0.2f, 1));
-        foreach (GameObject cloth in clothing) {
-            cloth.GetComponent<SpriteRenderer>().color = c;
-        }
+//        Color c = new Color(Random.Range(0.2f, 1), Random.Range(0.2f, 1), Random.Range(0.2f, 1));
+//        foreach (GameObject cloth in clothing) {
+//            cloth.GetComponent<SpriteRenderer>().color = c;
+//        }
         // direction
         if(Random.Range(-1, 1) < 0) this.Flip();
     }
