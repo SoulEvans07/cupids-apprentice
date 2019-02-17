@@ -35,6 +35,10 @@ public class Human : MonoBehaviour {
         _rigidbody.position = new Vector3(_pos.x + Time.deltaTime * this.direction * this.speed, _pos.y);
     }
 
+    private void OnMouseUp() {
+        Debug.Log(this.name);
+    }
+
     void Flip() {
         this.direction *= -1;
         this.wallDetector.localPosition = new Vector2(wallDetector.localPosition.x * -1, wallDetector.localPosition.y);
