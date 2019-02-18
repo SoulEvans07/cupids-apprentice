@@ -22,6 +22,8 @@ public class Human : MonoBehaviour {
 
     public SpriteRenderer hairRenderer;
     private HumanDescription _description;
+
+    private Vector2 prev_pos;
     
     void Start() {
         if(!wallDetector) throw new Exception(this.name + " is missing wall detector");
@@ -40,8 +42,13 @@ public class Human : MonoBehaviour {
             this.Flip();
         }
 
+        float dir = ((Vector2) transform.position - prev_pos).x;
+        if(dir < 0) this.Flip(-1);
+        else if(dir > 0) this.Flip(1);
+        prev_pos = transform.position;
+
         // Move
-        _rigidbody.position = new Vector3(_pos.x + Time.deltaTime * this.direction * this.speed, _pos.y);
+        //_rigidbody.position = new Vector3(_pos.x + Time.deltaTime * this.direction * this.speed, _pos.y);
     }
 
     private void OnMouseUp() {
