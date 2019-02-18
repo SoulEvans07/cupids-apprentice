@@ -34,21 +34,21 @@ public class Human : MonoBehaviour {
         this.Randomize();
     }
 
-    void FixedUpdate() {
-        _pos = this._rigidbody.position;
+    void Update() {
+        _pos = this.transform.position;
         
         // Change direction if wall is in front of us
         if (Physics2D.OverlapCircle(this.wallDetector.position, 0.1f, this.whatIsWall)) {
             this.Flip();
         }
 
-        float dir = ((Vector2) transform.position - prev_pos).x;
-        if(dir < 0) this.Flip(-1);
-        else if(dir > 0) this.Flip(1);
-        prev_pos = transform.position;
+//        float dir = ((Vector2) transform.position - prev_pos).x;
+//        if(dir < 0) this.Flip(-1);
+//        else if(dir > 0) this.Flip(1);
+//        prev_pos = transform.position;
 
         // Move
-        //_rigidbody.position = new Vector3(_pos.x + Time.deltaTime * this.direction * this.speed, _pos.y);
+        this.transform.position = new Vector3(_pos.x + Time.deltaTime * this.direction * this.speed, _pos.y);
     }
 
     private void OnMouseUp() {

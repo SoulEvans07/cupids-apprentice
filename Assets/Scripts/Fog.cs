@@ -29,8 +29,8 @@ public class Fog : MonoBehaviour {
         this.aspect = new Vector2( this.fog.size.y / this.fog.size.x * 0.4f, 0.5f);
     }
 
-    void FixedUpdate() {
-        _pos = _transform.position;
+    void Update() {
+        _pos = this.transform.position;
 
         // Set fog position
         this.fog.position = _pos - this.fog.size * 0.5f;
@@ -45,9 +45,9 @@ public class Fog : MonoBehaviour {
         
         // Animate fog
         if (_diff < minDiff) {
-            _transform.localScale = this.aspect * getScale(_diff) + this.aspect * getJitter() ;
+            this.transform.localScale = this.aspect * getScale(_diff) + this.aspect * getJitter() ;
         } else if (!_transform.localScale.Equals(Vector3.zero)) {
-            _transform.localScale = Vector3.zero;
+            this.transform.localScale = Vector3.zero;
         }
     }
 
