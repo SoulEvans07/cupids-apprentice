@@ -98,9 +98,4 @@ public class Fog : MonoBehaviour {
 
         return 0f;
     }
-
-    [ExecuteInEditMode]
-    void OnDrawGizmosSelected() {
-        Handles.DrawSolidRectangleWithOutline(this.fog, Color.clear, Color.cyan);
-    }
 }

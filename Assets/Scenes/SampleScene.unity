@@ -410,7 +410,7 @@ PrefabInstance:
     - target: {fileID: 597583248068491096, guid: 8ee1c32c0f3668b46b77ca5cd6836717,
         type: 3}
       propertyPath: humanCount
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee1c32c0f3668b46b77ca5cd6836717, type: 3}

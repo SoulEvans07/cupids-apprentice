@@ -64,6 +64,7 @@ public class Human : MonoBehaviour {
     public void SetOrderLayer(int _base) {
         if(_renderers == null) _renderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer rendr in _renderers) {
+            if(rendr.sortingLayerName != "FX")
             rendr.sortingOrder = rendr.sortingOrder + _base * 10;
         }
     }
